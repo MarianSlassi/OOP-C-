@@ -4,68 +4,77 @@
 
 
 
-
 int main()
 {
 	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+	SetConsoleOutputCP(1251); //Подключаем ввод на русском
 
-	int punct = 0; //user menu choice
-	std::cout << "Введите количество студентов" <<std::endl;
-	int length;
-	std::cin>> length;
-	Student *arrS = new Student[length]; //objects volume
-	system("cls");
-	int red;
+	int punct = 0; //default user menu choice value
+	int length; //length of dynami
+
+	std::cout << "Введите количество студентов" << std::endl;
+	std::cin >> length;
+	Student* arrS = new Student[length]; // array inicializing
+	
+	system("cls"); //clean console
+	int red; // value to store object number in array to change his fields
 	
 	do  {
 
 		std::cout << "1. Просмотр объектов" << std::endl;
 		std::cout << "2. Редактор списка студентов" << std::endl;
 		std::cout << "3. Выход \nВведите номер исполняемого действия" <<std::endl;
-		std::cin >> punct;
-		
+		/*try
+		{*/
+			punct = Input();
+		/*}
+		catch (const std::exception& ex)
+		{
+			cout<< ex.what()<<endl;
+			cout << "Ошибка ввода" << endl;
+		}
+		*/
 		
 		switch (punct)
 		{
 		case 1:
-			if (length == NULL) 
+			if (length == 0)
 			{
 				std::cout << "Еще не было создано объектов" << std::endl;
-				break;
-				Sleep(2000);
-			}
-			else for (int i = 0; i < length; i++) 
-			{
-				cout <<"\n\n"<< i + 1 << ".";
-				arrS[i].ShowStudent();
 				
-
-
+				Sleep(2000);
+				break;
 			}
-			cout << "----------------\nПросмотр будет завершен автоматически в течении десяти секунд\n------------------" << endl;
-			Sleep(10000);
+			else ShowALL(arrS, length);
 
 			break;
 
 		case 2:
-
+			
 			std::cout << "Введите номер редактируемого студента \n Всего студентов: "<<length+1<<std::endl;
-			std::cin >> red;
+			red=Input();
 			arrS[red - 1].Edit();
 			break;
 		
 
+		default:
+			cout << "Введите еще раз, только число из пункта меню" << endl;
+			punct = Input();
+			break;
 
+
+			delete[] arrS; // Всегда убирай за собой!
 		}
+		
+
 		
 		
 		system("cls");
 
 
-	} while (punct != 3);
+	} while (punct != 3 /* && cin*/);
 
-	delete[] arrS;
+	
 	
 	std::cout << "Работа программы завершена" << std::endl;
 
