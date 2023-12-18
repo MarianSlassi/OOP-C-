@@ -60,12 +60,20 @@ public:
 	 void PopProduct(Product foradd);
 	 int GetSAmount();
 	 double Calculate() override;
-	 friend void const ShowExpensive(const Order& order);
-
+	 friend void ShowExpensive( Order order);
+	 Product GetProduct(int i);
+	 int SizeOfList();
 
 };
 
-
+Product Order::GetProduct(int i)
+{
+	return this->products[i];
+}
+int Order::SizeOfList()
+{
+	return this->products.size();
+ }
 
 
 

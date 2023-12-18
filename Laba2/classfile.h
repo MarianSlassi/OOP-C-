@@ -391,15 +391,20 @@ double Order::Calculate()
 }
 
 
-const void ShowExpensive(const Order& order)
+void ShowExpensive(Order order)
 {
-	for (int i = 0; i < order.products.size(); i++)
+	int schetchik = 0;
+	
+	for (int i = 0; i < order.SizeOfList(); i++)
 	{
-		if (order.products[i].GetCPrice() > 1000)
+		cout << "Список дорогих товаров: \n";
+		if (order.GetProduct(i).GetCPrice() > 1000)
 		{
-			cout << i + 1 << ". " << order.GetName() << endl
+			cout << i + 1 << ". " << order.GetName() << endl;
+			schetchik++;
 		};
-		
+		if (schetchik == 0) { cout << "Нет товаров дороже 1000$"; };
+
 
 	};
 }

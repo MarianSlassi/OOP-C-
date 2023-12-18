@@ -84,21 +84,35 @@ int main()
 					do {
 						system("cls");
 						orders.at(i-1).ShowShopInfo();
-						cout << "\n-----\n1. Редактировать дату и имя\n2. Добавить в заказ товар\n0. Выход" << endl;
+						cout << "\n-----\n1. Редактировать дату и имя\n2. Добавить в заказ товар\n3. Удалить последний добавленный товар\n4. Вывести дорогие товары\n0. Выход" << endl;
 						
-						k = InputMenu(0, 2);
+						k = InputMenu(0, 4);
 						switch (k) 
 						{
 						case 1:
 							
 							
 							orders[i-1].EditField();
+							break;
 						case 2:
+							system("cls");
 							JustShow(arrS, length);
 							cout << "\nДобавить товар номер : ";
 							cin >> forpr;
 							orders[i-1].PushProduct(arrS[forpr - 1]);
-
+							break;
+						case 3:
+							if (orders[i - 1].SizeOfList() == 0) { cout << "У вас пустой массив" << endl; Sleep(3000); continue; }
+							cout << "\nУдалить товар номер : ";
+							cin >> forpr;
+							orders[i - 1].PopProduct(arrS[forpr - 1]);
+							cout << "Товар удален";
+							Sleep(3000);
+							break;
+						case 4:
+							ShowExpensive(orders[i - 1]);
+							Sleep(5000);
+							break;
 						}
 					} while (k != 0);
 					break;
