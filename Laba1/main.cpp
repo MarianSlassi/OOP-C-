@@ -14,7 +14,7 @@ int main()
 
 	std::cout << "Введите количество студентов" << std::endl;
 	std::cin >> length;
-	Student* arrS = new Student[length]; // array inicializing
+	Student* arrS = new Student[length]; // array initializing
 	
 	system("cls"); //clean console
 	int red; // value to store object number in array to change his fields
